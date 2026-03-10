@@ -19,7 +19,7 @@ jobs:
         uses: actions/setup-node@v4
         with:
           node-version: 20
-          cache: 'npm'
+          # Se eliminó la línea de cache para evitar el error
       - name: Install dependencies
         run: npm install
       - name: Build
@@ -29,7 +29,9 @@ jobs:
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
         with:
-          path: './dist' # Si usas Vite es './dist', si es Create React App cambia a './build'
+          # Verifica si tu carpeta de salida es 'dist' o 'build'
+          # Si es React normal suele ser 'build', si es Vite es 'dist'
+          path: './build' 
       - name: Deploy to GitHub Pages
         id: deployment
         uses: actions/deploy-pages@v4
